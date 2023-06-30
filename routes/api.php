@@ -29,23 +29,23 @@ Route::post('/login', [AuthController::class, 'login'])->name('login');
 Route::post('/logout', [AuthController::class, 'logout']);
 Route::post('/me', [AuthController::class, 'me']);
 
-// Route::middleware(['auth:api'])->group(function () {
-    // Route::apiResource('/room', [RoomController::class]);
-    // Route::apiResource('/user', UserController::class);
-    // Route::apiResource('/category', CategoryController::class);
-    // Route::apiResource('/reservation', ReservationController::class);
-    // Route::apiResource('/tool', ToolController::class);
-// });
-
-Route::group([
-    'middleware' => 'sanctum',
-    'prefix' => 'auth'
-], function() {
+Route::middleware(['auth:api'])->group(function () {
     Route::apiResource('/room', [RoomController::class]);
     Route::apiResource('/user', UserController::class);
     Route::apiResource('/category', CategoryController::class);
     Route::apiResource('/reservation', ReservationController::class);
     Route::apiResource('/tool', ToolController::class);
 });
+
+// Route::group([
+//     'middleware' => 'sanctum',
+//     'prefix' => 'auth'
+// ], function() {
+//     Route::apiResource('/room', [RoomController::class]);
+//     Route::apiResource('/user', UserController::class);
+//     Route::apiResource('/category', CategoryController::class);
+//     Route::apiResource('/reservation', ReservationController::class);
+//     Route::apiResource('/tool', ToolController::class);
+// });
 
 // Route::middleware('auth:sanctum')->group(function () {});
