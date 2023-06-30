@@ -6,22 +6,26 @@ use App\Models\Room;
 use Illuminate\Http\Request;
 use App\Http\Resources\RoomResource;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Auth;
+use Tymon\JWTAuth\Facades\JWTAuth;
+use Tymon\JWTAuth\Exceptions\JWTException;
 
 class RoomController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
-    {
-        $rooms = Room::all();
+    public function index(Request $request)
+{
 
-        return (new ApiRule)->responsemessage(
-            "Room data",
-            RoomResource::collection($rooms),
-            200
-        );
-    }
+    $rooms = Room::all();
+
+    return (new ApiRule)->responsemessage(
+        "Room data",
+        RoomResource::collection($rooms),
+        200
+    );
+}
 
     /**
      * Store a newly created resource in storage.

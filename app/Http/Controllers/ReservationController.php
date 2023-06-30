@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Reservation;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 use App\Http\Resources\ReservationResource;
 
@@ -43,6 +44,13 @@ class ReservationController extends Controller
                 422
             );
         } else {
+            // $validatedData = $validator->validated();
+            // $otherReservations = Reservation::where('date', '=', $validatedData["date"])->get();
+
+            // foreach ($otherReservations as $res) {
+            //     if (validatedData["check_in"] > $res->check_in && validatedData["check_in"] < $res->check_out)
+            // }
+
             if($reservation = Reservation::create($validator->validated())) {
                 return (new ApiRule)->responsemessage(
                     "New reservation created successfully",

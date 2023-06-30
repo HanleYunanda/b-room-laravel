@@ -21,6 +21,12 @@ class ApiRule extends Controller
             case 202:
                 $scode = "Accepted";
                 break;
+            case 400:
+                $scode = "Bad Request";
+                break;
+            case 401:
+                $scode = "Unauthorized";
+                break;
             case 404:
                 $scode = "Not Found";
                 break;
